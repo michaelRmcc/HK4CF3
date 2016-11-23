@@ -76,7 +76,6 @@ angular.module('conFusion.controllers', [])
 				$scope.showMenu = false;
 				$scope.message = "Loading ...";
 
-		 		//see wk3-exercise1 vid: 3:06/12:04-left for the 'getdishes() removal.
 				$scope.dishes = menuFactory.query(
 						function(response) {
 								$scope.dishes = response;
@@ -215,15 +214,14 @@ angular.module('conFusion.controllers', [])
 					
 					var temp_d = new Date().toISOString();
 				  $scope.commentdata.date = temp_d;
-					$scope.dish.comments.push($scope.commentdata);		
-					//menuFactory.getDishes().update({id:$scope.dish.id},$scope.dish);
+					$scope.dish.comments.push($scope.commentdata);
 					menuFactory.update({id:$scope.dish.id},$scope.dish);
 				
 					$scope.commentForm.$setPristine();  //this throwing fits in debugger
 
 					$scope.commentdata = {rating:5, comment:"", author:"", date:""};
 					
-				};  //added submitComment func semicolon jshint error warning					
+				};  //added func semicolon because jshint error warning					
 			
 
 		}])
@@ -246,22 +244,19 @@ angular.module('conFusion.controllers', [])
 				//};  //submit-function. added semicolon because of jshint error warning
 		}])
 
-		// implement the IndexController and About Controller here
 
 		.controller('IndexController', ['$scope', '$stateParams', 'dish', 'leader', 'promotion', 'menuFactory', 'promotionFactory', 'corporateFactory', 'baseURL', function($scope, $stateParams, dish, leader, promotion, menuFactory, promotionFactory, corporateFactory, baseURL) {
 		
 
 				$scope.baseURL = baseURL;
-				//$scope.leader = corporateFactory.get({id:3});
 				$scope.leader = leader;
 			
 				$scope.showDish = false;
 				$scope.message="Loading ...";
 			
 				$scope.dish = dish;
-				$scope.showDish = true;  //think i should set it to true now ... resolve approach happening in app.js			
+				$scope.showDish = true;  //?should set to true since 'resolve' approach now happening in app.js			
 			
-				//$scope.promotion = promotionFactory.get({id:0});
 				$scope.promotion = promotion;
 
 		}])
@@ -269,16 +264,13 @@ angular.module('conFusion.controllers', [])
 		.controller('AboutController', ['$scope', '$stateParams', 'leaders','corporateFactory', 'baseURL', function($scope, $stateParams, leaders, corporateFactory, baseURL) {
 
 						$scope.baseURL = baseURL; 
-						//$scope.leaders = corporateFactory.query();
-			
 						$scope.leaders = leaders;
-						console.log("in AboutController. leaders: "+$scope.leaders);
-
+			
+						//console.log("in AboutController. leaders: "+$scope.leaders);
 						}])
 
-		.controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'menuFactory',
-																				'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout', function ( $scope, dishes, favorites, favoriteFactory, menuFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
-	
+		.controller('FavoritesController', ['$scope', 'dishes', 'favorites', 'favoriteFactory', 'baseURL', '$ionicListDelegate', '$ionicPopup', '$ionicLoading', '$timeout', function ( $scope, dishes, favorites, favoriteFactory, baseURL, $ionicListDelegate, $ionicPopup, $ionicLoading, $timeout) {
+																					
 			$scope.baseURL = baseURL;
 			$scope.shouldShowDelete = false;
 			
